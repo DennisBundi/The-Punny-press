@@ -12,7 +12,7 @@ export default function AdminSidebar() {
   return (
     <aside className="hidden lg:flex lg:flex-col w-64 bg-charcoal text-white min-h-screen">
       <div className="p-6">
-        <img src="/logo.jpeg" alt="The Punny Press" className="h-10 w-auto brightness-0 invert mb-3" />
+        <img src="/logo.jpeg" alt="The Punny Press" className="h-10 w-auto rounded-full mb-3" />
         <h1 className="font-serif text-lg font-bold text-gold">The Punny Press</h1>
         <p className="text-xs text-gray-400 mt-1">Admin Dashboard</p>
       </div>
