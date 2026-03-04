@@ -9,6 +9,7 @@ import PublicLayout from '@/components/layout/PublicLayout';
 import AdminLayout from '@/components/layout/AdminLayout';
 import AuthGuard from '@/components/layout/AuthGuard';
 import Spinner from '@/components/ui/Spinner';
+import PWAInstallBanner from '@/components/shared/PWAInstallBanner';
 
 import Home from '@/routes/Home';
 import Products from '@/routes/Products';
@@ -69,6 +70,7 @@ export default function App() {
             </Suspense>
           </BrowserRouter>
           <Toaster position="top-right" richColors />
+          <PWAInstallBanner />
         </SettingsProvider>
       </AuthProvider>
     </HelmetProvider>
