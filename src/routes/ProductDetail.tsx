@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SEOHead from '@/components/shared/SEOHead';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
@@ -6,10 +7,17 @@ import ProductInfo from '@/components/products/ProductInfo';
 import RelatedProducts from '@/components/products/RelatedProducts';
 import Spinner from '@/components/ui/Spinner';
 import { useProduct } from '@/hooks/useProducts';
+import { trackEvent } from '@/lib/analytics';
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { product, loading } = useProduct(slug!);
+
+  useEffect(() => {
+    if (product?.id) {
+      trackEvent({ type: 'product_view', productId: product.id, productName: product.name });
+    }
+  }, [product?.id]);
 
   if (loading) {
     return <Spinner className="py-20" />;

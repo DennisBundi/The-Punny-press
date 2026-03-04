@@ -1,5 +1,6 @@
 import { Instagram } from 'lucide-react';
 import { useSettings } from '@/contexts/SettingsContext';
+import { trackEvent } from '@/lib/analytics';
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -41,6 +42,7 @@ export default function SocialLinks({ className = '', iconSize = 'h-5 w-5' }: So
           href={url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent({ type: 'social_click', platform: label.toLowerCase() })}
           className="flex h-9 w-9 items-center justify-center rounded-full bg-charcoal/10 text-gray-600 hover:bg-gold hover:text-charcoal transition-colors"
           aria-label={label}
         >

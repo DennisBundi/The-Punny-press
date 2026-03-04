@@ -47,7 +47,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
       {product.is_available && (
         <WhatsAppButton
-          product={{ name: product.name, price: product.price, slug: product.slug }}
+          product={{ id: product.id, name: product.name, price: product.price, slug: product.slug }}
         />
       )}
     </div>
