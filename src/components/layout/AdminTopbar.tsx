@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, LogOut, LayoutDashboard, Package, Tags, Settings } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Package, Tags, Settings, ExternalLink, Store } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const navItems = [
@@ -25,6 +25,9 @@ export default function AdminTopbar() {
       <div className="flex items-center justify-between px-4 h-14">
         <span className="font-serif text-lg font-bold text-charcoal">Admin</span>
         <div className="flex items-center gap-2">
+          <a href="/" className="p-2 text-gray-500 hover:text-gold-dark" title="View Store">
+            <Store className="h-5 w-5" />
+          </a>
           <button onClick={handleSignOut} className="p-2 text-gray-500 hover:text-red-600">
             <LogOut className="h-5 w-5" />
           </button>
@@ -53,6 +56,15 @@ export default function AdminTopbar() {
               {label}
             </NavLink>
           ))}
+          <div className="border-t border-gray-200 mt-2 pt-2">
+            <a
+              href="/"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-charcoal hover:bg-warm-gray"
+            >
+              <ExternalLink className="h-5 w-5" />
+              View Store
+            </a>
+          </div>
         </nav>
       )}
     </header>
