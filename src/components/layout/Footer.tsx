@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <img src="/logo.jpeg" alt="The Punny Press" className="h-10 w-auto brightness-0 invert" />
+              <img src="/logo.jpeg" alt="The Punny Press" className="h-10 w-auto rounded-full" />
               <h3 className="font-serif text-lg font-bold text-gold">
                 {settings.business_name || 'The Punny Press'}
               </h3>
