@@ -31,18 +31,24 @@ export default function Home() {
       <SEOHead />
 
       {/* Hero — split layout */}
-      <section className="bg-charcoal">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
+      <section className="relative bg-[#0a0a0a] overflow-hidden">
+        {/* Gold corner accents */}
+        <div className="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-gold/30 hidden lg:block" />
+        <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-gold/30 hidden lg:block" />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
           {/* Left — text */}
-          <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
-            <div className="w-12 h-1 bg-gold rounded-full mb-8" />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
-              {settings.business_tagline || 'Wrap yourself in joy'}
+          <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
+            <div className="w-10 h-1 bg-gold mb-8" />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
+              Wrap yourself{' '}
+              <br className="hidden sm:block" />
+              in <em className="font-serif text-gold not-italic">joy</em>
             </h1>
-            <p className="mt-6 text-lg text-gray-300 max-w-lg leading-relaxed">
+            <p className="mt-6 text-base text-gray-400 max-w-md leading-relaxed">
               Discover unique handmade crochet pieces, each crafted with care and attention to detail. From cozy accessories to beautiful home decor.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/products">
                 <Button size="lg">
                   Explore Collection
@@ -55,38 +61,42 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+
+            {/* Stats row */}
+            <div className="mt-12 flex gap-10">
+              <div>
+                <p className="text-2xl font-bold text-gold">100+</p>
+                <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Pieces Crafted</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-gold">50+</p>
+                <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Happy Customers</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-gold italic font-serif">100%</p>
+                <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">Handmade</p>
+              </div>
+            </div>
           </div>
 
-          {/* Right — product image */}
+          {/* Right — yarn image (desktop) */}
           <div className="relative hidden lg:block">
-            {settings.hero_image_url ? (
-              <img
-                src={settings.hero_image_url}
-                alt={settings.business_name || 'Handmade crochet'}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-gold-light flex items-center justify-center">
-                <span className="font-serif text-5xl text-gold-dark">TPP</span>
-              </div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/40 to-transparent" />
+            <img
+              src="/hero-yarn.jpg"
+              alt="Colourful yarn rolls"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
           </div>
 
-          {/* Mobile — show image below text */}
-          <div className="lg:hidden relative h-72">
-            {settings.hero_image_url ? (
-              <img
-                src={settings.hero_image_url}
-                alt={settings.business_name || 'Handmade crochet'}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-gold-light flex items-center justify-center">
-                <span className="font-serif text-4xl text-gold-dark">TPP</span>
-              </div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent" />
+          {/* Mobile — yarn image below text */}
+          <div className="lg:hidden relative h-64">
+            <img
+              src="/hero-yarn.jpg"
+              alt="Colourful yarn rolls"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
           </div>
         </div>
       </section>
