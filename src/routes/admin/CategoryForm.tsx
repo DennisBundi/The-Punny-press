@@ -23,7 +23,8 @@ const schema = z.object({
   sort_order: z.coerce.number().int(),
 });
 
-type FormData = z.infer<typeof schema>;
+type FormInput = z.input<typeof schema>;
+type FormData = z.output<typeof schema>;
 
 export default function CategoryForm() {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,7 @@ export default function CategoryForm() {
   const [saving, setSaving] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | undefined>();
 
-  const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<FormInput, unknown, FormData>({
     resolver: zodResolver(schema),
     defaultValues: { name: '', slug: '', description: '', sort_order: 0 },
   });

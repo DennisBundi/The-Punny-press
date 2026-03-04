@@ -1,6 +1,4 @@
-import type { ClassValue } from 'clsx';
-
-export function cn(...inputs: ClassValue[]): string {
+export function cn(...inputs: (string | boolean | null | undefined)[]): string {
   // Simple class merging without clsx dependency
   return inputs
     .flat()

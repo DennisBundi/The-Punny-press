@@ -20,7 +20,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     if (data) {
       const mapped = { ...DEFAULT_SETTINGS };
       for (const row of data) {
-        mapped[row.key] = row.value;
+        (mapped as Record<string, string>)[row.key] = row.value;
       }
       setSettings(mapped);
     }
