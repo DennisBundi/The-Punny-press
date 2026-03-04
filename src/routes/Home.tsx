@@ -30,32 +30,63 @@ export default function Home() {
     <>
       <SEOHead />
 
-      {/* Hero */}
-      <section
-        className="relative bg-cover bg-center min-h-[80vh] flex items-center"
-        style={{ backgroundImage: "url('/logo.jpeg')" }}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-40 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight text-shadow">
-            {settings.business_tagline || 'Wrap yourself in joy'}
-          </h1>
-          <p className="mt-6 text-lg text-gray-200 max-w-2xl mx-auto text-shadow-sm">
-            Discover unique handmade crochet pieces, each crafted with care and attention to detail. From cozy accessories to beautiful home decor.
-          </p>
-          <div className="gold-divider-wide mt-8" />
-          <div className="mt-10 flex flex-wrap justify-center gap-6">
-            <Link to="/products">
-              <Button size="lg">
-                Shop Now
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-            </Link>
-            <Link to="/about">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                About Us
-              </Button>
-            </Link>
+      {/* Hero — split layout */}
+      <section className="bg-charcoal">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
+          {/* Left — text */}
+          <div className="flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
+            <div className="w-12 h-1 bg-gold rounded-full mb-8" />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+              {settings.business_tagline || 'Wrap yourself in joy'}
+            </h1>
+            <p className="mt-6 text-lg text-gray-300 max-w-lg leading-relaxed">
+              Discover unique handmade crochet pieces, each crafted with care and attention to detail. From cozy accessories to beautiful home decor.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link to="/products">
+                <Button size="lg">
+                  Explore Collection
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="outline" size="lg" className="border-gold/40 text-gold hover:bg-gold/10">
+                  About Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right — product image */}
+          <div className="relative hidden lg:block">
+            {settings.hero_image_url ? (
+              <img
+                src={settings.hero_image_url}
+                alt={settings.business_name || 'Handmade crochet'}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gold-light flex items-center justify-center">
+                <span className="font-serif text-5xl text-gold-dark">TPP</span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/40 to-transparent" />
+          </div>
+
+          {/* Mobile — show image below text */}
+          <div className="lg:hidden relative h-72">
+            {settings.hero_image_url ? (
+              <img
+                src={settings.hero_image_url}
+                alt={settings.business_name || 'Handmade crochet'}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gold-light flex items-center justify-center">
+                <span className="font-serif text-4xl text-gold-dark">TPP</span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent" />
           </div>
         </div>
       </section>
