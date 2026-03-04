@@ -15,9 +15,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       to={`/products/${product.slug}`}
-      className="group block bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
+      className="group block bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl hover:border-gold/20 transition-all duration-500"
     >
-      <div className="aspect-square bg-warm-gray relative overflow-hidden">
+      <div className="aspect-[4/5] bg-warm-gray relative overflow-hidden">
         {primaryImage ? (
           <img
             src={primaryImage.url}
@@ -35,12 +35,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
       </div>
-      <div className="p-4">
-        <h3 className="font-sans font-medium text-charcoal group-hover:text-gold-dark transition-colors line-clamp-1">
+      <div className="p-5">
+        <h3 className="font-serif font-semibold text-charcoal group-hover:text-gold-dark transition-colors line-clamp-1">
           {product.name}
         </h3>
         {product.category && (
-          <p className="text-xs text-gray-500 mt-1">{product.category.name}</p>
+          <p className="text-xs text-gray-400 uppercase tracking-wider mt-1">{product.category.name}</p>
         )}
         <p className="font-sans font-semibold text-gold-dark mt-2">
           {formatPrice(product.price, settings.currency_symbol)}

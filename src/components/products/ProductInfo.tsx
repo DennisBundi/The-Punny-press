@@ -12,13 +12,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const { settings } = useSettings();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         {product.category && (
-          <p className="text-sm text-gray-500 mb-2">{product.category.name}</p>
+          <p className="text-sm text-gray-400 uppercase tracking-wider mb-2">{product.category.name}</p>
         )}
-        <h1 className="text-3xl font-bold">{product.name}</h1>
-        <p className="text-2xl font-semibold text-gold-dark mt-3">
+        <h1 className="text-3xl md:text-4xl tracking-tight font-bold">{product.name}</h1>
+        <p className="text-2xl md:text-3xl font-semibold text-gold-dark mt-4">
           {formatPrice(product.price, settings.currency_symbol)}
         </p>
       </div>
@@ -32,9 +32,11 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         {product.is_featured && <Badge variant="warning">Featured</Badge>}
       </div>
 
+      <div className="gold-divider-wide" />
+
       {product.description && (
         <div>
-          <h2 className="font-sans text-sm font-semibold uppercase tracking-wider text-gray-400 mb-2">
+          <h2 className="font-sans text-sm font-semibold uppercase tracking-widest text-gray-400 mb-2">
             Description
           </h2>
           <p className="text-gray-600 leading-relaxed whitespace-pre-line">

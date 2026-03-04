@@ -33,7 +33,7 @@ export default function ProductDetail() {
         description={product.description ?? `Check out ${product.name} from The Punny Press`}
         image={images[0]?.url}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Breadcrumbs
           items={[
             { label: 'Products', href: '/products' },
@@ -44,13 +44,13 @@ export default function ProductDetail() {
           ]}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <ProductGallery images={images} productName={product.name} />
           <ProductInfo product={product} />
         </div>
 
         {product.category_id && (
-          <div className="mt-16">
+          <div className="mt-20">
             <RelatedProducts
               categoryId={product.category_id}
               currentProductId={product.id}

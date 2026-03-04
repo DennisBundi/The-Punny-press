@@ -34,7 +34,7 @@ export default function RelatedProducts({ categoryId, currentProductId }: Relate
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">You Might Also Like</h2>
+      <h2 className="text-2xl font-bold tracking-tight mb-8">You Might Also Like</h2>
       <ProductGrid products={products} />
     </div>
   );

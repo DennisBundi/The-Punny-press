@@ -10,9 +10,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<Variant, string> = {
-  primary: 'bg-gold text-black hover:bg-gold-dark focus:ring-gold',
-  secondary: 'bg-charcoal text-white hover:bg-black focus:ring-charcoal',
-  outline: 'border border-charcoal text-charcoal hover:bg-warm-gray focus:ring-charcoal',
+  primary: 'bg-gold text-black hover:bg-gold-dark focus:ring-gold hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 uppercase tracking-wider',
+  secondary: 'bg-charcoal text-white hover:bg-black focus:ring-charcoal hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0',
+  outline: 'border border-charcoal text-charcoal hover:bg-warm-gray focus:ring-charcoal hover:shadow-md hover:-translate-y-0.5 active:translate-y-0',
   ghost: 'text-charcoal hover:bg-warm-gray focus:ring-charcoal',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
 };
@@ -20,7 +20,7 @@ const variantStyles: Record<Variant, string> = {
 const sizeStyles: Record<Size, string> = {
   sm: 'px-3 py-1.5 text-sm',
   md: 'px-4 py-2 text-sm',
-  lg: 'px-6 py-3 text-base',
+  lg: 'px-8 py-3.5 text-base',
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -29,7 +29,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={disabled || loading}
-        className={`inline-flex items-center justify-center gap-2 rounded-lg font-sans font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+        className={`inline-flex items-center justify-center gap-2 rounded-lg font-sans font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
         {...props}
       >
         {loading && (

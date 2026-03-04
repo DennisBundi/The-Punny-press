@@ -6,15 +6,15 @@ export const DEFAULT_META = {
 
 export const DEFAULT_SETTINGS = {
   business_name: 'The Punny Press',
-  business_tagline: 'Handmade with love, one stitch at a time',
-  whatsapp_number: '',
+  business_tagline: 'Wrap yourself in joy',
+  whatsapp_number: '254746544090',
   instagram_url: '',
   tiktok_url: '',
   facebook_url: '',
   about_text: '',
   contact_email: '',
   hero_image_url: '',
-  currency_symbol: '₦',
+  currency_symbol: 'Ksh',
 };
 
 export const ADMIN_NAV_ITEMS = [

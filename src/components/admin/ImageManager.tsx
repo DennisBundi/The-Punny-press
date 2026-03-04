@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { DndContext, closestCenter, type DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -68,6 +68,7 @@ function SortableImage({
 export default function ImageManager({ productId, images, onUpdate }: ImageManagerProps) {
   const { upload, uploading } = useImageUpload();
   const [localImages, setLocalImages] = useState(images);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -132,19 +133,20 @@ export default function ImageManager({ productId, images, onUpdate }: ImageManag
         <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-gray-400">
           Images
         </h3>
-        <label>
+        <div>
           <input
+            ref={fileInputRef}
             type="file"
             accept="image/*"
             multiple
             className="hidden"
             onChange={handleUpload}
           />
-          <Button type="button" variant="outline" size="sm" loading={uploading} onClick={() => {}}>
+          <Button type="button" variant="outline" size="sm" loading={uploading} onClick={() => fileInputRef.current?.click()}>
             <Upload className="h-4 w-4" />
             Upload
           </Button>
-        </label>
+        </div>
       </div>
 
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

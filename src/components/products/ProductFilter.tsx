@@ -8,16 +8,16 @@ interface ProductFilterProps {
 
 export default function ProductFilter({ categories, activeSlug }: ProductFilterProps) {
   return (
-    <div>
-      <h3 className="font-sans text-sm font-semibold uppercase tracking-wider text-gray-400 mb-3">
+    <div className="bg-white/50 rounded-2xl p-5 backdrop-blur-sm">
+      <h3 className="font-sans text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
         Categories
       </h3>
       <ul className="space-y-1">
         <li>
           <Link
             to="/products"
-            className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-              !activeSlug ? 'bg-gold-light text-gold-dark' : 'text-charcoal hover:bg-warm-gray'
+            className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              !activeSlug ? 'bg-gold-light text-gold-dark border-l-2 border-gold' : 'text-charcoal hover:bg-warm-gray'
             }`}
           >
             All Products
@@ -27,8 +27,8 @@ export default function ProductFilter({ categories, activeSlug }: ProductFilterP
           <li key={cat.id}>
             <Link
               to={`/products?category=${cat.slug}`}
-              className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeSlug === cat.slug ? 'bg-gold-light text-gold-dark' : 'text-charcoal hover:bg-warm-gray'
+              className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                activeSlug === cat.slug ? 'bg-gold-light text-gold-dark border-l-2 border-gold' : 'text-charcoal hover:bg-warm-gray'
               }`}
             >
               {cat.name}

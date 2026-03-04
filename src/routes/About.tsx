@@ -7,12 +7,13 @@ export default function About() {
   return (
     <>
       <SEOHead title="About Us" description="Learn about The Punny Press and our handmade crochet story." />
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Us</h1>
+      <div className="max-w-4xl mx-auto px-4 py-16 md:py-24">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-center">About Us</h1>
+        <div className="gold-divider mb-10" />
 
-        <div className="bg-cream rounded-2xl p-8 md:p-12">
+        <div className="bg-cream rounded-2xl p-10 md:p-16">
           {settings.about_text ? (
-            <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">
+            <p className="text-gray-600 text-lg md:text-xl leading-relaxed whitespace-pre-line">
               {settings.about_text}
             </p>
           ) : (

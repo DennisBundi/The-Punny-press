@@ -11,7 +11,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
 
   if (images.length === 0) {
     return (
-      <div className="aspect-square bg-warm-gray rounded-xl flex items-center justify-center text-gray-400">
+      <div className="aspect-[4/5] bg-warm-gray rounded-2xl flex items-center justify-center text-gray-400 shadow-sm">
         No images available
       </div>
     );
@@ -21,11 +21,12 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
 
   return (
     <div className="space-y-4">
-      <div className="aspect-square bg-warm-gray rounded-xl overflow-hidden">
+      <div className="aspect-[4/5] bg-warm-gray rounded-2xl overflow-hidden shadow-sm">
         <img
+          key={selectedImage.id}
           src={selectedImage.url}
           alt={selectedImage.alt_text ?? productName}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-fade-in"
         />
       </div>
 
@@ -35,7 +36,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             <button
               key={image.id}
               onClick={() => setSelectedIndex(i)}
-              className={`shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
+              className={`shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
                 i === selectedIndex ? 'border-gold' : 'border-transparent hover:border-gray-300'
               }`}
             >
