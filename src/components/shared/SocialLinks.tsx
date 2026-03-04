@@ -41,7 +41,7 @@ export default function SocialLinks({ className = '', iconSize = 'h-5 w-5' }: So
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 hover:text-gold-dark transition-colors"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-charcoal/10 text-gray-600 hover:bg-gold hover:text-charcoal transition-colors"
           aria-label={label}
         >
           <Icon className={iconSize} />
