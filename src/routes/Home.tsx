@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SEOHead from '@/components/shared/SEOHead';
 import { useSettings } from '@/contexts/SettingsContext';
+import { SITE_URL } from '@/lib/constants';
 import FeaturedProducts from '@/components/products/FeaturedProducts';
 import Button from '@/components/ui/Button';
 import { ArrowRight, Star } from 'lucide-react';
@@ -26,9 +27,28 @@ const reviews = [
 export default function Home() {
   const { settings } = useSettings();
 
+  const organizationLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'The Punny Press',
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.jpeg`,
+    description: 'Beautiful handmade crochet products crafted with love.',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: `+${settings.whatsapp_number}`,
+      contactType: 'customer service',
+    },
+    sameAs: [
+      settings.instagram_url,
+      settings.tiktok_url,
+      settings.facebook_url,
+    ].filter(Boolean),
+  };
+
   return (
     <>
-      <SEOHead />
+      <SEOHead jsonLd={organizationLd} />
 
       {/* Hero — split layout */}
       <section className="relative bg-[#0a0a0a] overflow-hidden">
@@ -84,6 +104,8 @@ export default function Home() {
             <img
               src="/hero-yarn.jpg"
               alt="Colourful yarn rolls"
+              decoding="async"
+              fetchPriority="high"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
@@ -94,6 +116,8 @@ export default function Home() {
             <img
               src="/hero-yarn.jpg"
               alt="Colourful yarn rolls"
+              decoding="async"
+              fetchPriority="high"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />

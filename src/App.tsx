@@ -11,16 +11,16 @@ import AuthGuard from '@/components/layout/AuthGuard';
 import Spinner from '@/components/ui/Spinner';
 import PWAInstallBanner from '@/components/shared/PWAInstallBanner';
 
-import Home from '@/routes/Home';
-import Products from '@/routes/Products';
-import ProductDetail from '@/routes/ProductDetail';
-import About from '@/routes/About';
-import Contact from '@/routes/Contact';
-import Terms from '@/routes/Terms';
-import Privacy from '@/routes/Privacy';
-import NotFound from '@/routes/NotFound';
+// Lazy-load all routes for code splitting
+const Home = lazy(() => import('@/routes/Home'));
+const Products = lazy(() => import('@/routes/Products'));
+const ProductDetail = lazy(() => import('@/routes/ProductDetail'));
+const About = lazy(() => import('@/routes/About'));
+const Contact = lazy(() => import('@/routes/Contact'));
+const Terms = lazy(() => import('@/routes/Terms'));
+const Privacy = lazy(() => import('@/routes/Privacy'));
+const NotFound = lazy(() => import('@/routes/NotFound'));
 
-// Lazy-load admin routes for code splitting
 const Login = lazy(() => import('@/routes/admin/Login'));
 const Dashboard = lazy(() => import('@/routes/admin/Dashboard'));
 const ProductList = lazy(() => import('@/routes/admin/ProductList'));
@@ -29,7 +29,7 @@ const CategoryList = lazy(() => import('@/routes/admin/CategoryList'));
 const CategoryForm = lazy(() => import('@/routes/admin/CategoryForm'));
 const Settings = lazy(() => import('@/routes/admin/Settings'));
 
-function AdminFallback() {
+function RouteFallback() {
   return <Spinner className="py-20" />;
 }
 
@@ -39,7 +39,7 @@ export default function App() {
       <AuthProvider>
         <SettingsProvider>
           <BrowserRouter>
-            <Suspense fallback={<AdminFallback />}>
+            <Suspense fallback={<RouteFallback />}>
               <Routes>
                 {/* Public routes */}
                 <Route element={<PublicLayout />}>

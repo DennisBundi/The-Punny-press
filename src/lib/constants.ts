@@ -1,7 +1,9 @@
+export const SITE_URL = 'https://the-punny-press-t3fj.vercel.app';
+
 export const DEFAULT_META = {
   title: 'The Punny Press — Handmade Crochet',
   description: 'Beautiful handmade crochet products crafted with love. Browse our collection and order via WhatsApp.',
-  ogImage: '/og-default.jpg',
+  ogImage: `${SITE_URL}/logo.jpeg`,
 };
 
 export const DEFAULT_SETTINGS = {

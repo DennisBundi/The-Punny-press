@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import SEOHead from '@/components/shared/SEOHead';
+import { SITE_URL } from '@/lib/constants';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductFilter from '@/components/products/ProductFilter';
@@ -14,9 +15,28 @@ export default function Products() {
   const { products, loading } = useProducts({ categorySlug });
   const { categories } = useCategories();
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: `${SITE_URL}/products`,
+      },
+    ],
+  };
+
   return (
     <>
-      <SEOHead title="Products" description="Browse our handmade crochet collection." />
+      <SEOHead title="Products" description="Browse our handmade crochet collection." jsonLd={breadcrumbLd} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Breadcrumbs items={[{ label: 'Products' }]} />
 

@@ -67,6 +67,18 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom', 'react-helmet-async'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+          'vendor-form': ['react-hook-form', '@hookform/resolvers', 'zod'],
+          'vendor-dnd': ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': '/src',

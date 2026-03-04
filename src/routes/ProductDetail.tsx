@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SEOHead from '@/components/shared/SEOHead';
+import { SITE_URL } from '@/lib/constants';
 import Breadcrumbs from '@/components/shared/Breadcrumbs';
 import ProductGallery from '@/components/products/ProductGallery';
 import ProductInfo from '@/components/products/ProductInfo';
@@ -34,12 +35,35 @@ export default function ProductDetail() {
 
   const images = product.images?.sort((a, b) => a.sort_order - b.sort_order) ?? [];
 
+  const productLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description ?? `Check out ${product.name} from The Punny Press`,
+    image: images.map((img) => img.url),
+    url: `${SITE_URL}/products/${product.slug}`,
+    brand: {
+      '@type': 'Brand',
+      name: 'The Punny Press',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: product.price,
+      priceCurrency: 'KES',
+      availability: product.is_available
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+    },
+  };
+
   return (
     <>
       <SEOHead
         title={product.name}
         description={product.description ?? `Check out ${product.name} from The Punny Press`}
         image={images[0]?.url}
+        type="product"
+        jsonLd={productLd}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Breadcrumbs

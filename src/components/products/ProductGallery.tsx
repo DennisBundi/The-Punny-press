@@ -26,6 +26,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           key={selectedImage.id}
           src={selectedImage.url}
           alt={selectedImage.alt_text ?? productName}
+          decoding="async"
           className="w-full h-full object-cover animate-fade-in"
         />
       </div>
@@ -43,6 +44,8 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               <img
                 src={image.url}
                 alt={image.alt_text ?? `${productName} ${i + 1}`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </button>

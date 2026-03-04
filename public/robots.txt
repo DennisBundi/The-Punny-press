@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://the-punny-press-t3fj.vercel.app/sitemap.xml
