@@ -17,7 +17,7 @@ import Card from '@/components/ui/Card';
 import Spinner from '@/components/ui/Spinner';
 import ImageManager from '@/components/admin/ImageManager';
 import { toast } from 'sonner';
-import { ArrowLeft, ImagePlus, X } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ImagePlus, Star, X } from 'lucide-react';
 
 const schema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -132,8 +132,13 @@ export default function ProductForm() {
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      setPendingFiles((prev) => [...prev, ...Array.from(files)]);
+    if (files && files.length > 0) {
+      const newFiles = Array.from(files);
+      setPendingFiles((prev) => [...prev, ...newFiles]);
+      toast.success(
+        `${newFiles.length} image${newFiles.length !== 1 ? 's' : ''} added`,
+        { description: 'Images will be uploaded when you save the product.' },
+      );
     }
     e.target.value = '';
   };
@@ -222,24 +227,40 @@ export default function ProductForm() {
               </button>
 
               {pendingFiles.length > 0 && (
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-500">
-                    {pendingFiles.length} image{pendingFiles.length !== 1 ? 's' : ''} ready to upload
-                  </p>
-                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <p className="text-sm font-medium text-gray-700">
+                      {pendingFiles.length} image{pendingFiles.length !== 1 ? 's' : ''} ready to upload
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {pendingFiles.map((file, index) => (
-                      <div key={`${file.name}-${index}`} className="relative group">
+                      <div
+                        key={`${file.name}-${index}`}
+                        className="relative group rounded-lg border bg-white overflow-hidden shadow-sm"
+                      >
                         <img
                           src={URL.createObjectURL(file)}
                           alt={file.name}
-                          className="h-20 w-full rounded-lg object-cover border"
+                          className="w-full h-32 object-cover"
                         />
+                        <div className="p-2">
+                          <p className="text-xs text-gray-700 font-medium truncate">{file.name}</p>
+                          <p className="text-xs text-gray-400">{(file.size / 1024).toFixed(0)} KB</p>
+                          {index === 0 && (
+                            <span className="inline-flex items-center gap-1 mt-1 text-xs text-gold-dark font-medium">
+                              <Star className="h-3 w-3 fill-current" />
+                              Primary
+                            </span>
+                          )}
+                        </div>
                         <button
                           type="button"
                           onClick={() => removePendingFile(index)}
-                          className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute top-1.5 right-1.5 bg-black/60 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
-                          <X className="h-3 w-3" />
+                          <X className="h-3.5 w-3.5" />
                         </button>
                       </div>
                     ))}
