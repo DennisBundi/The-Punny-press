@@ -124,7 +124,7 @@ export default function ProductForm() {
           await uploadPendingFiles(created.id);
         }
         toast.success('Product created');
-        navigate(`/admin/products/${created.id}`);
+        navigate('/admin/products');
       }
     }
     setSaving(false);

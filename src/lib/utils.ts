@@ -11,13 +11,15 @@ export function formatPrice(price: number, currencySymbol = '₦'): string {
 }
 
 export function generateSlug(name: string): string {
-  return name
+  const base = name
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_]+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
+  const suffix = Math.random().toString(36).slice(2, 6);
+  return base ? `${base}-${suffix}` : suffix;
 }
 
 export function truncate(str: string, length: number): string {
