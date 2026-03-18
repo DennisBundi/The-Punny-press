@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { SettingsProvider } from '@/contexts/SettingsContext';
 
@@ -71,6 +72,7 @@ export default function App() {
           </BrowserRouter>
           <Toaster position="top-right" richColors />
           <PWAInstallBanner />
+          <Analytics />
         </SettingsProvider>
       </AuthProvider>
     </HelmetProvider>
